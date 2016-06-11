@@ -1,5 +1,5 @@
 var map = L.map('map',{
-    center: [51.4752006531,-3.1733899117],
+    center: [51.4892006531,-3.1733899117],
     zoom: 13
 });
 
@@ -19,22 +19,35 @@ d3.csv("mapTrash.csv", function(d) {
     location : d["location"]
   };
 }, function(data) {
-  marker(data);
+  drawMarker(data);
 });
 
-function marker(data){
+function drawMarker(data){
   console.log(data);
-  var loc = JSON.parse(data[8]['location']);
-  var marker = L.marker([loc[0],loc[1]]).addTo(map);
+  map.on('popupopen', function(centreMarker) {
+    var cM = map.project(centreMarker.popup._latlng);
+    cM.y -= centreMarker.popup._container.clientHeight/2
+    map.panTo(map.unproject(cM),{animate: true});
+  });
+
+var markerClusters = L.markerClusterGroup();
+ 
+for ( var i = 0; i < data.length; ++i )
+{
+  if(data[i]['location'] != ''){
+  var loc = JSON.parse(data[i]['location']);
+  var content = '<p class="text">' + data[i]['tweet_text'] + '</p><img class="pic" src="' + data[i]['picture_url']+ '">';
+ 
+  var m = L.marker([loc[0], loc[1]])
+                  .bindPopup(content);
+ 
+  markerClusters.addLayer(m);
+  }
+}
+ 
+map.addLayer( markerClusters );
+
 }
 
 
-// map.on('popupopen', function(centreMarker) {
-//     var cM = map.project(centreMarker.popup._latlng);
-//     cM.y -= centreMarker.popup._container.clientHeight/2
-//     map.panTo(map.unproject(cM),{animate: true});
-// });
-
-// var collisionLayer = L.layerGroup.collision({margin:2});
-// collisionLayer.addTo(map);
 

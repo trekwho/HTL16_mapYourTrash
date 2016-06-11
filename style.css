@@ -14,6 +14,17 @@ body {
   margin: auto;
 }
 
+.pic{
+  height: 250px;
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.text{
+  /*border: solid 1px black;*/
+}
+
 #story {
   margin-top: 3%;
   margin-left: 10%;
