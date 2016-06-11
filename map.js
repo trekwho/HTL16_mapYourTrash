@@ -10,22 +10,24 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 	    accessToken: 'pk.eyJ1IjoidHJla3dobyIsImEiOiJjaWdhcTVyZW8wM2N1d2RtN2E5ZHB1bWdkIn0.Hp0qtRYfZegcf4rn4FL70Q'
 	}).addTo(map);
 
-// var tweets = function() {
-//     var tweet = new XMLHttpRequest();
-//     tweet.open("GET", "mapTrash.csv", false);
-//     tweet.send()
-//     console.log(tweets)
-// };
+var tweets =[];
 
 d3.csv("mapTrash.csv", function(d) {
   return {
     tweet_text : d.tweet_text,
     picture_url : d.picture_url,
-    location : +d.["location"]
+    location : d["location"]
   };
 }, function(data) {
-  console.log(data[0]);
+  marker(data);
 });
+
+function marker(data){
+  console.log(data);
+  var loc = JSON.parse(data[8]['location']);
+  var marker = L.marker([loc[0],loc[1]]).addTo(map);
+}
+
 
 // map.on('popupopen', function(centreMarker) {
 //     var cM = map.project(centreMarker.popup._latlng);
@@ -35,3 +37,4 @@ d3.csv("mapTrash.csv", function(d) {
 
 // var collisionLayer = L.layerGroup.collision({margin:2});
 // collisionLayer.addTo(map);
+
