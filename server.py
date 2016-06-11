@@ -17,7 +17,7 @@ twitter = Twython(config["app_key"], access_token=access_token)
 
 # This searches the Twitter API for the keyword 'python'
 
-search_results = twitter.search(q='#litter', geocode='51.4752006531,-3.1733899117,50km', count='20')
+search_results = twitter.search(q='#htl16_litter', geocode='51.4752006531,-3.1733899117,50km', count='20')
 
 # search_results is now a dictionary that holds a lot of tweets.
 
@@ -25,8 +25,11 @@ search_results = twitter.search(q='#litter', geocode='51.4752006531,-3.173389911
 for tweet in search_results['statuses'] :
     print('---')
     pics = ''
-    for pic in tweet['entities']['media']:
-        pics += pic['media_url'] + ';'
+    try:
+        for pic in tweet['entities']['media']:
+            pics += pic['media_url'] + ';'
+    except KeyError:
+        pass
     print(tweet['text'],'\npicture url: ', pics,'\nretweet number:', tweet['retweet_count'],'like number:', tweet['favorite_count'])
     print('geo location:',tweet['geo'], '\nuser location:',tweet['user']['location'])
 
