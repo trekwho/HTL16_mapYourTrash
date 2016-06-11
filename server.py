@@ -17,18 +17,17 @@ twitter = Twython(config["app_key"], access_token=access_token)
 
 # This searches the Twitter API for the keyword 'python'
 
-search_results = twitter.search(q='Ted Cruz', geocode='37.781157,-122.398720,6400km', count='100')
-ret = twitter.get_retweets(id='692647161067102208')
+search_results = twitter.search(q='#litter', geocode='51.4752006531,-3.1733899117,50km', count='20')
 
 # search_results is now a dictionary that holds a lot of tweets.
-# now, let's detect emojis with a regular expression:
-regexp = re.compile(u'['u'\U0001F300-\U0001F64F'u'\U0001F680-\U0001F6FF'u'\u2600-\u26FF\u2700-\u27BF]+', re.UNICODE)
 
-#print (search_results['statuses'])
+#print (json.dumps(search_results['statuses'],indent =4))
 for tweet in search_results['statuses'] :
     print('---')
-    print(tweet['text'],'\nretweet number:', tweet['retweet_count'],'like number:', tweet['favorite_count'])
-    print("EMOJIS DETECTED: " + str(re.findall(regexp, tweet['text'])))
-    print(tweet['geo'])
+    pics = ''
+    for pic in tweet['entities']['media']:
+        pics += pic['media_url'] + ';'
+    print(tweet['text'],'\npicture url: ', pics,'\nretweet number:', tweet['retweet_count'],'like number:', tweet['favorite_count'])
+    print('geo location:',tweet['geo'], '\nuser location:',tweet['user']['location'])
 
 # Now let's go to the Twitter API documentation and find out how we can format them in a readable way.
