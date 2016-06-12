@@ -21,8 +21,18 @@ body {
   border-radius: 5px;
 }
 
-.text{
-  /*border: solid 1px black;*/
+.in_article{
+  width: 100%;
+}
+
+.attributes{
+  text-align: center;
+  color: gray;
+  font-size: 10px;
+}
+
+.attributes a{
+    text-decoration: none;
 }
 
 #story {
@@ -40,6 +50,18 @@ h3 {
 
 h4 {
   font-size: 16px;
+  text-align: center;
+  font-family: 'Candal', sans-serif;
+}
+
+#sharebuttons {
+  position:relative;
+  padding-left: 45%;
+  padding-top: 2%;
+}
+
+h5{
+  font-size: 14px;
   text-align: center;
   font-family: 'Candal', sans-serif;
 }
