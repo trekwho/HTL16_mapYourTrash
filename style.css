@@ -1,0 +1,45 @@
+*{
+-webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+      box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+}
+
+#map {
+	height: 400px;
+  width: 1000px;
+  margin: auto;
+}
+
+.pic{
+  height: 250px;
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.text{
+  /*border: solid 1px black;*/
+}
+
+#story {
+  margin-top: 3%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+h3 {
+  margin-top: 2%;
+  font-size: 20px;
+  text-align: center;
+  font-family: 'Candal', sans-serif;
+}
+
+h4 {
+  font-size: 16px;
+  text-align: center;
+  font-family: 'Candal', sans-serif;
+}
