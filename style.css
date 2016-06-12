@@ -53,3 +53,9 @@ h4 {
   text-align: center;
   font-family: 'Candal', sans-serif;
 }
+
+#sharebuttons {
+  position:relative;
+  padding-left: 45%;
+  padding-top: 2%;
+}
