@@ -21,8 +21,18 @@ body {
   border-radius: 5px;
 }
 
-.text{
-  /*border: solid 1px black;*/
+.in_article{
+  width: 100%;
+}
+
+.attributes{
+  text-align: center;
+  color: gray;
+  font-size: 10px;
+}
+
+.attributes a{
+    text-decoration: none;
 }
 
 #story {
